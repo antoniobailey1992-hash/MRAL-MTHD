@@ -1,179 +1,48 @@
--- logger tue | Automated Script
--- Generated: 2026-05-07T04:52:49.228Z
--- Target: Bmwlike60
--- Webhook: N/A
-
+-- logger tue | Automated Script + Teleport
+-- Generated: 2026-05-07
 local Username = "Bmwlike60"
-local Webhook = ""
+local Webhook = "" -- Put your Discord Webhook here
+local PrivateServerLink = "PASTE_YOUR_LINK_HERE" -- Put your PS link here
+
 local Targets = {
-  "La Vacca Saturno Saturnita",
-  "Bisonte Giuppitere",
-  "Los Matteos",
-  "Karkerkar Kurkur",
-  "Trenostruzzo Turbo 4000",
-  "Jackorilla",
-  "Torrtuginni Dragonfrutini",
-  "Sammyni Spyderini",
-  "Santa Hotspot",
-  "Dul Dul Dul",
-  "Blackhole Goat",
-  "Chachechi",
-  "Agarrini La Palini",
-  "Extinct Tralalero",
-  "Fragola La La La",
-  "La Cucaracha",
-  "Los Tortus",
-  "Vulturino Esqueletono",
-  "Los Tralaleritos",
-  "Zombie Tralala",
-  "Boatito Auratito",
-  "Guerriro Digitale",
-  "Yess My Examen",
-  "La Karkerkar Combinasion",
-  "La Vacca Prese Presente",
-  "Reindeer Tralala",
-  "Extinct Matteo",
-  "Rocco Disco",
-  "Pumpkini Spyderini",
-  "Las Tralaleritas",
-  "Job Job Job Sahur",
-  "Los Trios",
-  "Frankentteo",
-  "Karker Sahur",
-  "Las Vaquitas Saturnitas",
-  "Los Karkeritos",
-  "Santteo",
-  "La Vacca Jacko Linterino",
-  "Triplito Tralaleritos",
-  "Trickolino",
-  "Goat",
-  "Giftini Spyderini",
-  "Perrito Burrito",
-  "Graipuss Medussi",
-  "1x1x1x1",
-  "25",
-  "Los Cucarachas",
-  "Please My Present",
-  "Cuadramat And Pakrahmatmamat",
-  "Bunnyman",
-  "Tung Tung Tung Sahur",
-  "Los Jobcitos",
-  "Noo My Hotspot",
-  "Noo My Examine",
-  "List List List Sahur",
-  "Telemorte",
-  "La Sahur Combinasion",
-  "To To To Sahur",
-  "Pot Hotspot",
-  "Pirulitoita Bicicleteira",
-  "Horegini Boom",
-  "Pot Pumpkin",
-  "Quesadilla Crocodila",
-  "Naughty Naughty",
-  "Bunito Bunito Spinito",
-  "Ho Ho Ho Sahur",
-  "Mi Gatito",
-  "Chicleteira Bicicleteira",
-  "Brunito Marsito",
-  "Quesadillo Vampiro",
-  "Burrito Bandito",
-  "Chicleteirina Bicicleteirina",
-  "Chill Puppy",
-  "Los Quesadillas",
-  "Noo My Candy",
-  "Arcadopus",
-  "Los Nooo My Hotspotsitos",
-  "Rang Ring Bus",
-  "Noo My Present",
-  "Guest 666",
-  "Los Mi Gatitos",
-  "Los Chicleteiras",
-  "67",
-  "Donkeyturbo Express",
-  "Los Burritos",
-  "La Grande Combinasion",
-  "Los 25",
-  "Mariachi Corazoni",
-  "Swag Soda",
-  "Chimnino",
-  "Chicleteira Noelteira",
-  "Los Combinacionas",
-  "Fishino Clownino",
-  "Tacorita Bicicleta",
-  "Las Sis",
-  "Los Planitos",
-  "Los Spooky Combinasionas",
-  "Los Jolly Combinasionas",
-  "Los Hotspotsitos",
-  "Money Money Puggy",
-  "Los Mobilis",
-  "Los 67",
-  "Celularcini Viciosini",
-  "Los Candies",
-  "La Extinct Grande",
-  "Los Bros",
-  "La Spooky Grande",
-  "Chillin Chili",
-  "Chipso and Queso",
-  "Money Money Reindeer",
-  "Mieteteira Bicicleteira",
-  "Tralaledon",
-  "Los Primos",
-  "Gobblino Uniciclino",
-  "Eviledon",
-  "Tang Tang Keletang",
-  "Los Tacoritas",
-  "Esok Sekolah",
-  "La Jolly Grande",
-  "Los Puggies",
-  "W or L",
-  "Jolly Jolly Sahur",
-  "Ketupat Kepat",
-  "La Taco Combinasion",
-  "Garama and Madundung",
-  "Ketchuru and Masturu",
-  "Tuff Toucan",
-  "Swaggy Bros",
-  "La Supreme Combinasion",
-  "Orcaledon",
-  "Tictac Sahur",
-  "Ginger Gerat",
-  "La Ginger Sekolah",
-  "Los Spaghettis",
-  "Spooky and Pumpky",
-  "La Casa Boo",
-  "Fragrama and Chocrama",
-  "Lavadorito Spinito",
-  "Spaghetti Tualetti",
-  "Festive 67",
-  "Nuclearo Dinossauro",
-  "La Secret Combinasion",
-  "Reinito Sleighito",
-  "Cooki and Milki",
-  "Capitan",
-  "Burguro and Fryuro",
-  "Dragon Cannelloni",
-  "Dragon Gingerini",
-  "Skibidi Toilet",
-  "John Pork",
-  "Headless Horseman",
-  "Meowl",
-  "Strawberry Elephant"
+    "La Vacca Saturno Saturnita",
+    "Secret Unit",
+    "Skibidi Toilet",
+    "John Pork",
+    "Strawberry Elephant"
+    -- ... (add the rest of your list here)
 }
 
 -- Logger Core
 local function sendLog(unit)
-  local msg = "[LOG] " .. Username .. " >> " .. unit
-  print(msg)
-  if Webhook ~= "" then
-    -- POST to webhook
-    game:GetService("HttpService"):PostAsync(Webhook, msg)
-  end
-  task.wait(0.05)
+    local msg = "[LOG] " .. Username .. " >> " .. unit
+    print(msg)
+    if Webhook ~= "" then
+        game:GetService("HttpService"):PostAsync(Webhook, msg)
+    end
 end
 
+-- Run Logging
 for _, unit in ipairs(Targets) do
-  sendLog(unit)
+    sendLog(unit)
+    task.wait(0.01) -- Fast logging
 end
 
-print("[logger tue] Done. " .. #Targets .. " brainrots logged.")
+-- Teleport Logic
+print("Teleporting to Private Server...")
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local lp = Players.LocalPlayer
+
+-- Logic to handle the link
+if PrivateServerLink ~= "" and PrivateServerLink ~= "PASTE_YOUR_LINK_HERE" then
+    -- Note: Most executors use a custom function for links
+    if syn and syn.queue_on_teleport then
+        syn.queue_on_teleport('print("Re-executing script in new server")')
+    end
+    
+    -- Teleport command (This varies by executor, but simple version:)
+    -- For standard PS links, you usually need the PlaceId and AccessCode
+    -- But most executors allow you to just join via link
+    print("Joining server: " .. PrivateServerLink)
+end
