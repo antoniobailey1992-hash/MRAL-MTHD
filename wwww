@@ -1,48 +1,45 @@
--- logger tue | Automated Script + Teleport
--- Generated: 2026-05-07
+-- logger tue | GUI Version
 local Username = "Bmwlike60"
-local Webhook = "" -- Put your Discord Webhook here
-local PrivateServerLink = "PASTE_YOUR_LINK_HERE" -- Put your PS link here
+local Webhook = "" 
+local PrivateServerLink = "PASTE_YOUR_LINK_HERE"
 
-local Targets = {
-    "La Vacca Saturno Saturnita",
-    "Secret Unit",
-    "Skibidi Toilet",
-    "John Pork",
-    "Strawberry Elephant"
-    -- ... (add the rest of your list here)
-}
+-- 1. Create the UI
+local ScreenGui = Instance.new("ScreenGui")
+local MainButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
 
--- Logger Core
-local function sendLog(unit)
-    local msg = "[LOG] " .. Username .. " >> " .. unit
-    print(msg)
-    if Webhook ~= "" then
-        game:GetService("HttpService"):PostAsync(Webhook, msg)
-    end
-end
+ScreenGui.Parent = game:GetService("CoreGui") -- This keeps it on screen even if you reset
+ScreenGui.Name = "BrainrotLoggerUI"
 
--- Run Logging
-for _, unit in ipairs(Targets) do
-    sendLog(unit)
-    task.wait(0.01) -- Fast logging
-end
+-- 2. Style the Button (Grunge/Dark Style)
+MainButton.Name = "ExecuteButton"
+MainButton.Parent = ScreenGui
+MainButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Dark Grey
+MainButton.Position = UDim2.new(0.05, 0, 0.4, 0) -- Left side of screen
+MainButton.Size = UDim2.new(0, 150, 0, 50)
+MainButton.Font = Enum.Font.GothamBold
+MainButton.Text = "LOG & JOIN"
+MainButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MainButton.TextSize = 14
+MainButton.Draggable = true -- You can move it around
 
--- Teleport Logic
-print("Teleporting to Private Server...")
-local TeleportService = game:GetService("TeleportService")
-local Players = game:GetService("Players")
-local lp = Players.LocalPlayer
+UICorner.CornerRadius = UDim(0, 8)
+UICorner.Parent = MainButton
 
--- Logic to handle the link
-if PrivateServerLink ~= "" and PrivateServerLink ~= "PASTE_YOUR_LINK_HERE" then
-    -- Note: Most executors use a custom function for links
-    if syn and syn.queue_on_teleport then
-        syn.queue_on_teleport('print("Re-executing script in new server")')
-    end
+-- 3. The Functionality
+MainButton.MouseButton1Click:Connect(function()
+    MainButton.Text = "LOGGING..."
+    MainButton.BackgroundColor3 = Color3.fromRGB(150, 0, 0) -- Turns Red while working
     
-    -- Teleport command (This varies by executor, but simple version:)
-    -- For standard PS links, you usually need the PlaceId and AccessCode
-    -- But most executors allow you to just join via link
-    print("Joining server: " .. PrivateServerLink)
-end
+    -- (The logging logic goes here)
+    print("Logging items for " .. Username)
+    
+    task.wait(1)
+    
+    -- Teleport logic
+    if PrivateServerLink ~= "" then
+        print("Teleporting...")
+        -- In many executors, you can use:
+        -- game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, PrivateServerLink, game.Players.LocalPlayer)
+    end
+end)
